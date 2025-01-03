@@ -4,6 +4,7 @@ dotenv.config();
 import morgan from 'morgan';
 import express from 'express';
 import mongoose from 'mongoose';
+import { body, validationResult } from 'express-validator';
 
 // routers
 import jobRouter from './routes/jobRouter.js';
@@ -23,10 +24,28 @@ app.get('/', (req, res) => {
   res.send('Hello');
 });
 
-app.post('/', (req, res) => {
-  // console.log(req);
-  res.json({ message: 'Data received', data: req.body });
-});
+app.post(
+  '/api/v1/test',
+  [
+    body('name')
+      .notEmpty()
+      .withMessage('name is required')
+      .isLength({ min: 7 })
+      .withMessage('name must be 7 characters long'),
+  ],
+  (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      const errorMessages = errors.array().map((error) => error.msg);
+      return res.status(400).json({ errors: errorMessages });
+    }
+    next();
+  },
+  (req, res) => {
+    const { name } = req.body;
+    res.json({ message: `Hello ${name}` });
+  }
+);
 
 app.use('/api/v1/jobs', jobRouter);
 
