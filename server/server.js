@@ -9,7 +9,6 @@ import mongoose from 'mongoose';
 import jobRouter from './routes/jobRouter.js';
 
 // midddleware
-import { validateTest } from './middleware/validationMiddleware.js';
 import errorHandlerMiddleware from './middleware/errorHandlerMiddleware.js';
 
 const app = express();
@@ -22,11 +21,6 @@ app.use(express.json());
 
 app.get('/', (req, res) => {
   res.send('Hello');
-});
-
-app.post('/api/v1/test', validateTest, (req, res) => {
-  const { name } = req.body;
-  res.json({ message: `Hello ${name}` });
 });
 
 app.use('/api/v1/jobs', jobRouter);

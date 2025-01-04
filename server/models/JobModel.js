@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { JOB_TYPE, JOB_STATUS } from '../utils/constants';
+import { JOB_TYPE, JOB_STATUS } from '../utils/constants.js';
 
 const JobSchema = new mongoose.Schema(
   {
