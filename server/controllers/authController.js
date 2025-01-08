@@ -1,4 +1,5 @@
 import User from '../models/UserModel.js';
+import { createJWT } from '../utils/tokenUtils.js';
 import { UnauthenticatedError } from '../errors/customErrors.js';
 import { comparePassword, hashPassword } from '../utils/passwordUtils.js';
 
@@ -24,5 +25,7 @@ export const login = async (req, res) => {
 
   if (!isValidUser) throw new UnauthenticatedError('Invalid credentials');
 
-  res.send({ msg: 'Login successfully' });
+  const token = createJWT({ userId: user._id, role: user.role });
+
+  res.json({ msg: 'Login successfully', token });
 };
