@@ -10,6 +10,7 @@ import jobRouter from './routes/jobRouter.js';
 import authRouter from './routes/authRouter.js';
 
 // midddleware
+import { authenticateUser } from './middleware/authMiddleware.js';
 import errorHandlerMiddleware from './middleware/errorHandlerMiddleware.js';
 
 const app = express();
@@ -24,7 +25,7 @@ app.get('/', (req, res) => {
   res.send('Hello');
 });
 
-app.use('/api/v1/jobs', jobRouter);
+app.use('/api/v1/jobs', authenticateUser, jobRouter);
 app.use('/api/v1/auth', authRouter);
 
 app.use('*', (req, res) => {
