@@ -1,5 +1,6 @@
+import { toast } from 'react-toastify';
 import { createContext, useContext, useState } from 'react';
-import { Outlet, redirect, useLoaderData } from 'react-router-dom';
+import { Outlet, redirect, useLoaderData, useNavigate } from 'react-router-dom';
 
 import { checkDefaultTheme } from '../App';
 import customFetch from '../utils/customFetch';
@@ -19,6 +20,7 @@ const DashboardContext = createContext();
 
 const DashboardLayout = () => {
   const { user } = useLoaderData();
+  const navigate = useNavigate();
 
   const [showSidebar, setShowSidebar] = useState(false);
   const [isDarkTheme, setIsDarkTheme] = useState(checkDefaultTheme());
@@ -34,8 +36,10 @@ const DashboardLayout = () => {
     setShowSidebar(!showSidebar);
   };
 
-  const logoutUser = () => {
-    console.log('Logout user');
+  const logoutUser = async () => {
+    navigate('/');
+    await customFetch.get('/auth/logout');
+    toast.success('Logged out successfully!');
   };
 
   return (
