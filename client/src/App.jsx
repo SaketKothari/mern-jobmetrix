@@ -15,6 +15,7 @@ import {
   Admin,
 } from './pages';
 
+import { action as loginAction } from './pages/Login';
 import { action as registerAction } from './pages/Register';
 
 // this function will run when components loads
@@ -44,6 +45,7 @@ const router = createBrowserRouter([
       {
         path: 'login',
         element: <Login />,
+        action: loginAction,
       },
       {
         path: 'dashboard',
