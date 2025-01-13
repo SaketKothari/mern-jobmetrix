@@ -1,13 +1,20 @@
-import { Outlet } from 'react-router-dom';
 import { createContext, useContext, useState } from 'react';
+import { Outlet, redirect, useLoaderData } from 'react-router-dom';
 
 import { checkDefaultTheme } from '../App';
 import Wrapper from '../assets/wrappers/Dashboard';
 import { BigSidebar, Navbar, SmallSidebar } from '../components';
 
+export const loader = async () => {
+  return 'Get the data before component renders';
+};
+
 const DashboardContext = createContext();
 
 const DashboardLayout = () => {
+  const data = useLoaderData();
+  console.log(data);
+
   // temp
   const user = { name: 'John' };
 
