@@ -6,8 +6,8 @@ import {
 } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { FormRow } from '../components';
 import customFetch from '../utils/customFetch';
+import { FormRow, FormRowSelect } from '../components';
 import Wrapper from '../assets/wrappers/DashboardFormPage';
 import { JOB_STATUS, JOB_TYPE } from '../../../server/utils/constants';
 
@@ -28,6 +28,18 @@ const AddJob = () => {
             labelText="job location"
             name="jobLocation"
             defaultValue={user.location}
+          />
+          <FormRowSelect
+            labelText="job status"
+            name="jobStatus"
+            defaultValue={JOB_STATUS.PENDING}
+            list={Object.values(JOB_STATUS)}
+          />
+          <FormRowSelect
+            labelText="job type"
+            name="jobType"
+            defaultValue={JOB_TYPE.FULL_TIME}
+            list={Object.values(JOB_TYPE)}
           />
           <button
             type="submit"
