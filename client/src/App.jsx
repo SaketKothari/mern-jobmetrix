@@ -18,6 +18,8 @@ import {
 import { action as loginAction } from './pages/Login';
 import { action as addJobAction } from './pages/AddJob';
 import { action as registerAction } from './pages/Register';
+
+import { loader as allJobsLoader } from './pages/AllJobs';
 import { loader as dashboardLoader } from './pages/DashboardLayout';
 
 // this function will run when components loads
@@ -60,7 +62,7 @@ const router = createBrowserRouter([
             action: addJobAction,
           },
           { path: 'stats', element: <Stats /> },
-          { path: 'all-jobs', element: <AllJobs /> },
+          { path: 'all-jobs', element: <AllJobs />, loader: allJobsLoader },
           { path: 'profile', element: <Profile /> },
           { path: 'admin', element: <Admin /> },
         ],
