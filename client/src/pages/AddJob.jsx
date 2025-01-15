@@ -11,6 +11,20 @@ import { FormRow, FormRowSelect } from '../components';
 import Wrapper from '../assets/wrappers/DashboardFormPage';
 import { JOB_STATUS, JOB_TYPE } from '../../../server/utils/constants';
 
+export const action = async ({ request }) => {
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+
+  try {
+    await customFetch.post('/jobs', data);
+    toast.success('Job added successfully');
+    return redirect('all-jobs');
+  } catch (error) {
+    toast.error(error?.response?.data?.msg);
+    return error;
+  }
+};
+
 const AddJob = () => {
   const { user } = useOutletContext();
   const navigation = useNavigation();
