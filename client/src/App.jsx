@@ -2,21 +2,28 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import './assets/css/index.css';
 import {
-  HomeLayout,
-  Register,
   Login,
-  DashboardLayout,
-  Landing,
   Error,
-  AddJob,
-  Stats,
-  AllJobs,
-  Profile,
   Admin,
+  Stats,
+  AddJob,
+  AllJobs,
+  Landing,
+  Profile,
+  EditJob,
+  Register,
+  HomeLayout,
+  DashboardLayout,
 } from './pages';
 
 import { action as loginAction } from './pages/Login';
+import { action as addJobAction } from './pages/AddJob';
+import { action as editJobAction } from './pages/EditJob';
 import { action as registerAction } from './pages/Register';
+import { action as deleteJobAction } from './pages/DeleteJob';
+
+import { loader as allJobsLoader } from './pages/AllJobs';
+import { loader as editJobLoader } from './pages/EditJob';
 import { loader as dashboardLoader } from './pages/DashboardLayout';
 
 // this function will run when components loads
@@ -56,11 +63,22 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <AddJob />,
+            action: addJobAction,
           },
           { path: 'stats', element: <Stats /> },
-          { path: 'all-jobs', element: <AllJobs /> },
+          { path: 'all-jobs', element: <AllJobs />, loader: allJobsLoader },
           { path: 'profile', element: <Profile /> },
           { path: 'admin', element: <Admin /> },
+          {
+            path: 'edit-job/:id',
+            element: <EditJob />,
+            loader: editJobLoader,
+            action: editJobAction,
+          },
+          {
+            path: 'delete-job/:id',
+            action: deleteJobAction,
+          },
         ],
       },
     ],
