@@ -22,6 +22,7 @@ import { action as editJobAction } from './pages/EditJob';
 import { action as registerAction } from './pages/Register';
 import { action as deleteJobAction } from './pages/DeleteJob';
 
+import { loader as adminJobLoader } from './pages/Admin';
 import { loader as allJobsLoader } from './pages/AllJobs';
 import { loader as editJobLoader } from './pages/EditJob';
 import { loader as dashboardLoader } from './pages/DashboardLayout';
@@ -68,7 +69,7 @@ const router = createBrowserRouter([
           { path: 'stats', element: <Stats /> },
           { path: 'all-jobs', element: <AllJobs />, loader: allJobsLoader },
           { path: 'profile', element: <Profile /> },
-          { path: 'admin', element: <Admin /> },
+          { path: 'admin', element: <Admin />, loader: adminJobLoader },
           {
             path: 'edit-job/:id',
             element: <EditJob />,
