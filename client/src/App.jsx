@@ -19,6 +19,7 @@ import {
 import { action as loginAction } from './pages/Login';
 import { action as addJobAction } from './pages/AddJob';
 import { action as editJobAction } from './pages/EditJob';
+import { action as profileAction } from './pages/Profile';
 import { action as registerAction } from './pages/Register';
 import { action as deleteJobAction } from './pages/DeleteJob';
 
@@ -68,7 +69,7 @@ const router = createBrowserRouter([
           },
           { path: 'stats', element: <Stats /> },
           { path: 'all-jobs', element: <AllJobs />, loader: allJobsLoader },
-          { path: 'profile', element: <Profile /> },
+          { path: 'profile', element: <Profile />, action: profileAction },
           { path: 'admin', element: <Admin />, loader: adminJobLoader },
           {
             path: 'edit-job/:id',
