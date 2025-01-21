@@ -1,8 +1,8 @@
 import { toast } from 'react-toastify';
-import { useOutletContext, useNavigation, Form } from 'react-router-dom';
+import { useOutletContext, Form } from 'react-router-dom';
 
-import { FormRow } from '../components';
 import customFetch from '../utils/customFetch';
+import { FormRow, SubmitBtn } from '../components';
 import Wrapper from '../assets/wrappers/DashboardFormPage';
 
 export const action = async ({ request }) => {
@@ -26,9 +26,6 @@ export const action = async ({ request }) => {
 const Profile = () => {
   const { user } = useOutletContext();
   const { name, lastName, email, location } = user;
-
-  const navigation = useNavigation();
-  const isSubmitting = navigation.state === 'submitting';
 
   return (
     <Wrapper>
@@ -61,13 +58,7 @@ const Profile = () => {
           <FormRow type="text" name="location" defaultValue={location} />
         </div>
 
-        <button
-          type="submit"
-          className="btn btn-block form-btn"
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? 'submitting...' : 'submit'}
-        </button>
+        <SubmitBtn formBtn />
       </Form>
     </Wrapper>
   );

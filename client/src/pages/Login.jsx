@@ -1,8 +1,8 @@
 import { toast } from 'react-toastify';
-import { Link, Form, redirect, useNavigation } from 'react-router-dom';
+import { Link, Form, redirect } from 'react-router-dom';
 
-import { FormRow, Logo } from '../components';
 import customFetch from '../utils/customFetch';
+import { FormRow, Logo, SubmitBtn } from '../components';
 import Wrapper from '../assets/wrappers/RegisterAndLoginPage';
 
 export const action = async ({ request }) => {
@@ -20,9 +20,6 @@ export const action = async ({ request }) => {
 };
 
 const Login = () => {
-  const navigation = useNavigation();
-  const isSubmitting = navigation.state === 'submitting';
-
   return (
     <Wrapper>
       <Form method="post" className="form">
@@ -30,10 +27,7 @@ const Login = () => {
         <h4>login</h4>
         <FormRow type="email" name="email" defaultValue="john@cena.com" />
         <FormRow type="password" name="password" defaultValue="secret@123" />
-
-        <button type="submit" className="btn btn-block" disabled={isSubmitting}>
-          {isSubmitting ? 'submitting' : 'submit'}
-        </button>
+        <SubmitBtn />
         <button className="btn btn-block">explore the app</button>
         <p>
           Not a member yet?
