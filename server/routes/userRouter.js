@@ -8,7 +8,10 @@ import {
 } from '../controllers/userController.js';
 
 import upload from '../middleware/multerMiddleware.js';
-import { authorizePermissions } from '../middleware/authMiddleware.js';
+import {
+  checkForTestUser,
+  authorizePermissions,
+} from '../middleware/authMiddleware.js';
 import { validateUpdateUserInput } from '../middleware/validationMiddleware.js';
 
 router.get('/current-user', getCurrentUser);
@@ -18,6 +21,7 @@ router.get('/admin/app-stats', [
 ]);
 router.patch(
   '/update-user',
+  checkForTestUser,
   upload.single('avatar'),
   validateUpdateUserInput,
   updateUser
