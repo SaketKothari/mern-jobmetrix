@@ -23,6 +23,7 @@ import { action as profileAction } from './pages/Profile';
 import { action as registerAction } from './pages/Register';
 import { action as deleteJobAction } from './pages/DeleteJob';
 
+import { loader as statsLoader } from './pages/Stats';
 import { loader as adminJobLoader } from './pages/Admin';
 import { loader as allJobsLoader } from './pages/AllJobs';
 import { loader as editJobLoader } from './pages/EditJob';
@@ -67,7 +68,7 @@ const router = createBrowserRouter([
             element: <AddJob />,
             action: addJobAction,
           },
-          { path: 'stats', element: <Stats /> },
+          { path: 'stats', element: <Stats />, loader: statsLoader },
           { path: 'all-jobs', element: <AllJobs />, loader: allJobsLoader },
           { path: 'profile', element: <Profile />, action: profileAction },
           { path: 'admin', element: <Admin />, loader: adminJobLoader },
