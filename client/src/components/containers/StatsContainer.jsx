@@ -1,5 +1,5 @@
-import StatItem from './StatItem';
-import Wrapper from '../assets/wrappers/StatsContainer';
+import StatItem from '../StatItem';
+import Wrapper from '../../assets/wrappers/StatsContainer';
 
 import { FaSuitcaseRolling, FaCalendarCheck, FaBug } from 'react-icons/fa';
 
