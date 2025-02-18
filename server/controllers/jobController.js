@@ -5,8 +5,49 @@ import mongoose from 'mongoose';
 import { StatusCodes } from 'http-status-codes';
 
 export const getAllJobs = async (req, res) => {
-  const jobs = await Job.find({ createdBy: req.user.userId });
-  res.status(StatusCodes.OK).json({ jobs });
+  const { search, jobStatus, jobType, sort } = req.query;
+  const queryObject = {
+    createdBy: req.user.userId,
+  };
+
+  if (search) {
+    queryObject.$or = [
+      { position: { $regex: search, $options: 'i' } },
+      { company: { $regex: search, $options: 'i' } },
+    ];
+  }
+
+  if (jobStatus && jobStatus !== 'all') {
+    queryObject.jobStatus = jobStatus;
+  }
+
+  if (jobType && jobType !== 'all') {
+    queryObject.jobType = jobType;
+  }
+
+  const sortOptions = {
+    newest: '-createdAt',
+    oldest: 'createdAt',
+    'a-z': 'position',
+    'z-a': '-position',
+  };
+
+  const sortKey = sortOptions[sort] || sortOptions.newest;
+
+  // Setup pagination
+  const page = Number(req.query.page) || 1;
+  const limit = Number(req.query.limit) || 10;
+  const skip = (page - 1) * limit;
+
+  const jobs = await Job.find(queryObject)
+    .sort(sortKey)
+    .skip(skip)
+    .limit(limit);
+
+  const totalJobs = await Job.countDocuments(queryObject);
+  const numberOfPages = Math.ceil(totalJobs / limit);
+
+  res.status(StatusCodes.OK).json({ totalJobs, numberOfPages, currentPage:page, jobs });
 };
 
 export const createJob = async (req, res) => {
