@@ -1,6 +1,5 @@
 import { FaAlignLeft } from 'react-icons/fa';
 
-import Logo from './Logo';
 import ThemeToggle from './ThemeToggle';
 import LogoutContainer from './containers/LogoutContainer';
 
@@ -17,7 +16,6 @@ const Navbar = () => {
           <FaAlignLeft />
         </button>
         <div>
-          <Logo />
           <h4 className="logo-text">dashboard</h4>
         </div>
         <div className="btn-container">

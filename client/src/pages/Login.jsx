@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 import { Link, Form, redirect, useNavigate } from 'react-router-dom';
 
 import customFetch from '../utils/customFetch';
-import { FormRow, Logo, SubmitBtn } from '../components';
+import { FormRow, SubmitBtn } from '../components';
 import Wrapper from '../assets/wrappers/RegisterAndLoginPage';
 
 export const action =
@@ -42,7 +42,6 @@ const Login = () => {
   return (
     <Wrapper>
       <Form method="post" className="form">
-        <Logo />
         <h4>login</h4>
         <FormRow type="email" name="email" />
         <FormRow type="password" name="password" />
