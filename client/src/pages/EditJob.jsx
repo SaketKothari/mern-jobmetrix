@@ -22,6 +22,7 @@ export const action = async ({ request, params }) => {
 
   try {
     await customFetch.patch(`/jobs/${params.id}`, data);
+    queryClient.invalidateQueries(['jobs']);
     toast.success('Job edited successfully');
     return redirect('/dashboard/all-jobs');
   } catch (error) {
@@ -30,7 +31,7 @@ export const action = async ({ request, params }) => {
   }
 };
 
-const EditJob = () => {
+const EditJob = (queryClient) => () => {
   const { job } = useLoaderData();
 
   return (
