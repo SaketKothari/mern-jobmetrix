@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import './assets/css/index.css';
+import ErrorElement from './components/ErrorElement';
 import {
   Login,
   Error,
@@ -78,7 +79,12 @@ const router = createBrowserRouter([
             element: <AddJob />,
             action: addJobAction,
           },
-          { path: 'stats', element: <Stats />, loader: statsLoader },
+          {
+            path: 'stats',
+            element: <Stats />,
+            loader: statsLoader,
+            errorElement: <ErrorElement />,
+          },
           { path: 'all-jobs', element: <AllJobs />, loader: allJobsLoader },
           { path: 'profile', element: <Profile />, action: profileAction },
           { path: 'admin', element: <Admin />, loader: adminJobLoader },
