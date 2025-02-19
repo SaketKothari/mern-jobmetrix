@@ -1,11 +1,13 @@
 import 'express-async-errors';
 import * as dotenv from 'dotenv';
 dotenv.config();
+import helmet from 'helmet';
 import morgan from 'morgan';
 import express from 'express';
 import mongoose from 'mongoose';
 import cloudinary from 'cloudinary';
 import cookieParser from 'cookie-parser';
+import mongoSanitize from 'express-mongo-sanitize';
 
 // routers
 import jobRouter from './routes/jobRouter.js';
@@ -37,14 +39,8 @@ if (process.env.NODE_ENV === 'development') {
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, '../client/dist')));
-
-app.get('/', (req, res) => {
-  res.send('Hello');
-});
-
-app.get('/api/v1/test', (req, res) => {
-  res.json({ msg: 'Test route' });
-});
+app.use(helmet());
+app.use(mongoSanitize());
 
 app.use('/api/v1/jobs', authenticateUser, jobRouter);
 app.use('/api/v1/users', authenticateUser, userRouter);
