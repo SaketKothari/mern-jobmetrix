@@ -46,7 +46,7 @@ const Login = () => {
         <FormRow type="email" name="email" />
         <FormRow type="password" name="password" />
         <SubmitBtn />
-        <button className="btn btn-block" onClick={loginDemoUser}>
+        <button type="button" className="btn btn-block" onClick={loginDemoUser}>
           explore the app
         </button>
         <p>
@@ -59,4 +59,5 @@ const Login = () => {
     </Wrapper>
   );
 };
+
 export default Login;

@@ -16,10 +16,10 @@ const Landing = () => {
             job <span>tracking</span> app
           </h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi nam
-            vitae excepturi! Similique labore libero autem ea amet magnam ipsam
-            blanditiis molestias nihil, corrupti cupiditate? Beatae ab iure
-            quisquam totam.
+            Welcome to JobMetrix! Your ultimate solution for tracking job
+            applications and managing your career journey. Easily organize your
+            job search, keep track of applications, and never miss an
+            opportunity. Stay ahead in your career with JobMetrix.
           </p>
           <Link to="/register" className="btn register-link">
             Register

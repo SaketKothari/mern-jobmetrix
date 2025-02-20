@@ -1,4 +1,3 @@
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
@@ -34,7 +33,7 @@ import { loader as dashboardLoader } from './pages/DashboardLayout';
 
 // this function will run when components loads
 export const checkDefaultTheme = () => {
-  const isDarkTheme = localStorage.getItem('darkTheme') === 'true';
+  const isDarkTheme = localStorage.getItem('darkTheme') !== 'false';
   document.body.classList.toggle('dark-theme', isDarkTheme);
   return isDarkTheme;
 };
@@ -117,7 +116,6 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
-      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 };
