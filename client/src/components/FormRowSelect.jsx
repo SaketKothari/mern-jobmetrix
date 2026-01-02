@@ -2,9 +2,17 @@ const FormRowSelect = ({
   name,
   labelText,
   list,
-  defaultValue = '',
+  defaultValue = "",
   onChange,
 }) => {
+  // Capitalize first letter of each word
+  const capitalize = (str) => {
+    return str
+      .split("-")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  };
+
   return (
     <div className="form-row">
       <label htmlFor={name} className="form-label">
@@ -20,7 +28,7 @@ const FormRowSelect = ({
         {list.map((itemValue) => {
           return (
             <option key={itemValue} value={itemValue}>
-              {itemValue}
+              {capitalize(itemValue)}
             </option>
           );
         })}
