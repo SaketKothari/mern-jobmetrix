@@ -8,9 +8,9 @@
     "start": "node dist/server.js",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "server": "tsx watch src/server.ts",
-    "client": "cd ../client && npm run dev",
-    "setup-project": "npm i && cd ../client && npm i",
-    "setup-production-app": "npm run build && cd ../client && npm run build",
+    "client": "cd .. && cd client && npm run dev",
+    "setup-project": "npm i && cd .. && cd client && npm i",
+    "setup-production-app": "npm i && npm run build && cd .. && cd client && npm i && npm run build",
     "populate": "tsx src/populate.ts"
   },
   "keywords": [],
