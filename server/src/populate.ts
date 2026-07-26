@@ -25,7 +25,10 @@ const populate = async (): Promise<void> => {
     }
 
     const jsonJobs: MockJob[] = JSON.parse(
-      await readFile(new URL("./utils/mockData.json", import.meta.url), "utf-8")
+      await readFile(
+        new URL("./utils/mockData.json", import.meta.url),
+        "utf-8",
+      ),
     );
     const jobs = jsonJobs.map((job) => {
       return { ...job, createdBy: user._id };
